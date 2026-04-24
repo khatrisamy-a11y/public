@@ -1,0 +1,651 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F0F2F7;font-family:'Nunito',sans-serif;display:flex;justify-content:center;align-items:flex-start;padding:20px 16px 32px;min-height:100vh}
+.phone{width:100%;max-width:360px;background:#fff;border-radius:40px;box-shadow:0 20px 60px rgba(0,0,0,.13),0 4px 16px rgba(0,0,0,.07);overflow:hidden;height:660px;display:flex;flex-direction:column;position:relative}
+.screen{display:none;flex-direction:column;height:100%;overflow:hidden}
+.screen.active{display:flex}
+
+/* LANDING */
+#s-land{background:#fff;align-items:center;justify-content:space-between;padding:0 0 28px}
+.land-bg{width:100%;height:210px;background:#F0F2F7;border-radius:0 0 50% 50%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0}
+.land-bg::before{content:'';position:absolute;width:170px;height:170px;background:rgba(255,255,255,.5);border-radius:50%;top:18px}
+.brain-svg{width:96px;height:96px;position:relative;z-index:1}
+.land-content{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:22px 24px 0}
+.land-title{font-size:23px;font-weight:800;color:#1C1C2E;line-height:1.25;margin-bottom:12px}
+.land-desc{font-size:13px;color:#8A8FA8;line-height:1.65;margin-bottom:5px}
+.land-dur{font-size:13px;color:#8A8FA8;margin-bottom:26px}
+.btn-cta{background:#3D7D5A;color:#fff;border:none;border-radius:50px;padding:13px 38px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;cursor:pointer;width:100%;max-width:240px;transition:transform .15s,background .15s}
+.btn-cta:hover{background:#2D6045;transform:translateY(-1px)}
+.land-brand{display:flex;align-items:center;gap:6px;margin-top:18px;color:#8A8FA8;font-size:12px;font-weight:600}
+.blogo{width:20px;height:20px;border-radius:50%;background:#3D7D5A;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.blogo svg{width:11px;height:11px}
+
+/* QUIZ */
+#s-quiz{background:#F0F2F7}
+.quiz-top{background:#fff;padding:16px 18px 12px;flex-shrink:0}
+.axe-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.axe-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.q-cnt{font-size:11px;color:#8A8FA8;font-weight:600}
+.pbar{height:4px;background:#E8EAF0;border-radius:2px;overflow:hidden}
+.pfill{height:100%;border-radius:2px;transition:width .4s}
+.quiz-card{background:#fff;margin:10px 12px;border-radius:26px;padding:18px 18px 14px;flex:1;overflow:hidden;animation:fadeUp .22s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.axe-icon-c{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 12px}
+.q-nm{text-align:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.q-tx{text-align:center;font-size:15px;font-weight:700;color:#1C1C2E;line-height:1.35;margin-bottom:5px}
+.q-sb{text-align:center;font-size:11.5px;color:#8A8FA8;line-height:1.5;margin-bottom:16px}
+.ans-list{display:flex;flex-direction:column;gap:8px}
+.ans-pill{border:1.5px solid #E8EAF0;border-radius:13px;padding:10px 14px;cursor:pointer;font-family:'Nunito',sans-serif;font-size:13.5px;color:#1C1C2E;font-weight:600;background:#fff;text-align:left;transition:all .15s;width:100%}
+.ans-pill.sel-0{background:#FDEAEA;border-color:#F09595;color:#791F1F}
+.ans-pill.sel-1{background:#FEF3E0;border-color:#FAC775;color:#633806}
+.ans-pill.sel-2{background:#E8F4EF;border-color:#5DCAA5;color:#085041}
+.ans-pill.sel-3{background:#EEF0FE;border-color:#AFA9EC;color:#3C3489}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;padding:0 12px 14px;flex-shrink:0}
+.btn-prev{background:#fff;border:1.5px solid #E8EAF0;border-radius:50px;padding:9px 18px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;color:#8A8FA8;cursor:pointer}
+.btn-nxt{border:none;border-radius:50px;padding:9px 22px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;cursor:pointer;opacity:.35;pointer-events:none}
+.btn-nxt.ok{opacity:1;pointer-events:all}
+.axe-sc-mini{text-align:center;font-size:10.5px;color:#8A8FA8;padding-bottom:2px;font-weight:600;flex-shrink:0}
+
+/* ANALYSE */
+#s-analyse{background:#F0F2F7;align-items:center;justify-content:center;text-align:center;padding:32px 24px;gap:0}
+.spin{width:56px;height:56px;border:3px solid #E8EAF0;border-top:3px solid #3D7D5A;border-radius:50%;animation:spin .9s linear infinite;margin:0 auto 20px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.an-title{font-size:19px;font-weight:700;color:#1C1C2E;margin-bottom:6px}
+.an-sb{font-size:12.5px;color:#8A8FA8;margin-bottom:20px}
+.an-steps{display:flex;flex-direction:column;gap:7px;width:100%}
+.an-step{display:flex;align-items:center;gap:9px;background:#fff;border-radius:13px;padding:9px 13px;font-size:12.5px;color:#8A8FA8;font-weight:600;transition:all .3s}
+.an-step.done{color:#3D7D5A}
+.an-dot{width:18px;height:18px;border-radius:50%;border:2px solid #E8EAF0;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;transition:all .3s}
+.an-step.done .an-dot{background:#3D7D5A;border-color:#3D7D5A;color:#fff}
+
+/* RESULTS SHELL */
+#s-results{background:#F0F2F7}
+.res-top{background:#fff;padding:14px 18px 10px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.res-logo-sm{display:flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;color:#3D7D5A}
+.btn-redo{background:#F0F2F7;border:none;border-radius:50px;padding:5px 12px;font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;color:#8A8FA8;cursor:pointer}
+.slides-viewport{flex:1;overflow:hidden;position:relative}
+.slides-track{display:flex;height:100%;transition:transform .38s cubic-bezier(.4,0,.2,1)}
+.slide{min-width:100%;height:100%;overflow-y:auto;padding:10px 12px 8px}
+.slide-nav{background:#fff;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-top:.5px solid #F0F2F7}
+.btn-slide{border:none;border-radius:50px;padding:8px 18px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s}
+.btn-slide.prev{background:#F0F2F7;color:#8A8FA8}
+.btn-slide.next{background:#3D7D5A;color:#fff}
+.btn-slide:disabled{opacity:.3;pointer-events:none}
+.dots{display:flex;gap:5px;align-items:center}
+.dot{width:7px;height:7px;border-radius:50%;background:#E8EAF0;transition:all .2s;cursor:pointer}
+.dot.active{background:#3D7D5A;width:20px;border-radius:4px}
+
+/* CARDS */
+.rcard{background:#fff;border-radius:20px;padding:14px 13px;margin-bottom:9px}
+.rcard:last-child{margin-bottom:0}
+.rcard-title{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#8A8FA8;margin-bottom:9px;display:flex;align-items:center;gap:4px}
+.profile-box{border-radius:14px;padding:12px}
+.profile-box.combined{background:#FDEAEA}
+.profile-box.isole{background:#FEF3E0}
+.profile-box.homogene{background:#E8F4EF}
+.pb-badge{font-size:14px;font-weight:800;margin-bottom:2px}
+.pb-sub{font-size:10.5px;font-weight:600;opacity:.7;margin-bottom:7px}
+.pb-desc{font-size:11.5px;line-height:1.6;margin-bottom:9px;opacity:.85}
+.pb-checks{display:flex;flex-direction:column;gap:4px;margin-bottom:9px}
+.pb-check{font-size:11.5px;font-weight:600;display:flex;align-items:center;gap:5px}
+.chk{width:15px;height:15px;border-radius:50%;background:rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;font-size:8px;flex-shrink:0;font-weight:700}
+.pb-zone{border-radius:9px;padding:7px 9px;font-size:11px;font-weight:700}
+.combined .pb-zone{background:#E24B4A;color:#fff}
+.isole .pb-zone{background:#BA7517;color:#fff}
+.homogene .pb-zone{background:#3D7D5A;color:#fff}
+.radar-wrap{display:flex;justify-content:center;margin-bottom:6px}
+.total-row{background:#E8F4EF;border-radius:11px;padding:9px 13px;display:flex;justify-content:space-between;align-items:center;margin-top:7px}
+.total-lbl{font-size:11.5px;color:#3D7D5A;font-weight:700}
+.total-num{font-size:15px;font-weight:800;color:#3D7D5A}
+.score-row{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.score-lbl{font-size:11px;color:#1C1C2E;font-weight:600;min-width:92px}
+.score-track{flex:1;height:7px;background:#F0F2F7;border-radius:4px;overflow:hidden}
+.score-bar-fill{height:100%;border-radius:4px}
+.score-num{font-size:11px;font-weight:700;min-width:32px;text-align:right}
+.legend-row{display:flex;gap:9px;margin-top:6px}
+.leg-item{display:flex;align-items:center;gap:3px;font-size:10px;color:#8A8FA8;font-weight:600}
+.leg-dot{width:7px;height:7px;border-radius:50%}
+.sdr{display:flex;align-items:center;gap:6px;margin-bottom:9px;padding-bottom:9px;border-bottom:.5px solid #F0F2F7}
+.sdr:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.sdr-ic{font-size:16px;width:22px;text-align:center;flex-shrink:0}
+.sdr-info{flex:1}
+.sdr-nm{font-size:11px;font-weight:700;color:#1C1C2E;margin-bottom:3px;display:flex;align-items:center;gap:5px}
+.sdr-bar{height:6px;background:#F0F2F7;border-radius:3px;overflow:hidden;margin-bottom:2px}
+.sdr-fill{height:100%;border-radius:3px}
+.sdr-meta{font-size:9.5px;color:#8A8FA8;font-weight:600}
+.sdr-sc{font-size:13px;font-weight:800;min-width:34px;text-align:right;flex-shrink:0}
+.lvl-badge{font-size:9px;font-weight:700;padding:2px 6px;border-radius:20px}
+.lvl-faible{background:#E8F4EF;color:#085041}
+.lvl-moyen{background:#FEF3E0;color:#633806}
+.lvl-eleve{background:#FDEAEA;color:#791F1F}
+.rec-item{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:.5px solid #F0F2F7;font-size:12.5px;color:#4A4A6A;line-height:1.5}
+.rec-item:last-child{border-bottom:none}
+.rec-ic{width:28px;height:28px;border-radius:9px;background:#E8F4EF;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.interp-txt{font-size:12.5px;color:#4A4A6A;line-height:1.7}
+.interp-txt strong{color:#1C1C2E;font-weight:700}
+.email-block{background:#fff;border-radius:20px;padding:14px 13px}
+.email-lbl{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#8A8FA8;margin-bottom:6px;display:flex;align-items:center;gap:4px}
+.email-row{display:flex;gap:7px;align-items:center;margin-bottom:7px}
+.email-in{flex:1;border:1.5px solid #E8EAF0;border-radius:13px;padding:10px 12px;font-family:'Nunito',sans-serif;font-size:12.5px;color:#1C1C2E;background:#F8F9FC;outline:none;transition:border .2s}
+.email-in:focus{border-color:#3D7D5A;background:#fff}
+.email-in::placeholder{color:#B0B4C8}
+.btn-send{background:#3D7D5A;color:#fff;border:none;border-radius:13px;padding:10px 14px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.email-note{font-size:10px;color:#B0B4C8;text-align:center;line-height:1.5}
+.email-ok{display:none;background:#E8F4EF;border-radius:11px;padding:10px;font-size:12.5px;color:#3D7D5A;font-weight:700;text-align:center;margin-bottom:7px}
+
+/* PDF overlay */
+.pdf-overlay{display:none;position:absolute;inset:0;background:rgba(28,28,46,.78);border-radius:40px;z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.pdf-overlay.active{display:flex}
+.pdf-spin{width:44px;height:44px;border:3px solid rgba(255,255,255,.2);border-top:3px solid #7FD9A8;border-radius:50%;animation:spin .9s linear infinite}
+.pdf-msg{color:#fff;font-size:14px;font-weight:700;text-align:center;padding:0 24px;line-height:1.5}
+</style>
+
+<div style="background:#F0F2F7;display:flex;justify-content:center;padding:20px 0 32px">
+<div class="phone" id="the-phone">
+  <div class="pdf-overlay" id="pdf-overlay">
+    <div class="pdf-spin"></div>
+    <div class="pdf-msg" id="pdf-msg">Génération du PDF...</div>
+  </div>
+
+  <!-- LANDING -->
+  <div id="s-land" class="screen active">
+    <div class="land-bg">
+      <svg class="brain-svg" viewBox="0 0 100 100" fill="none">
+        <ellipse cx="50" cy="52" rx="34" ry="30" fill="#F7C4BC" opacity=".3"/>
+        <path d="M28 45C26 38 30 30 38 28c4-2 8-1 10 2 2-3 6-4 10-2 8 2 12 10 10 17 3 3 4 8 2 12-2 6-8 9-14 8-2 3-6 5-10 3-4 2-8 0-10-3-6-1-12-4-14-10-2-5 0-9 6-10z" fill="#F4A89A"/>
+        <path d="M48 30v36" stroke="#E8756A" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
+        <path d="M32 38c2-2 5-2 6 0M62 38c1-2 4-2 5 0M30 50c2-4 6-6 10-4M60 46c4-2 8 0 10 4M34 57c2-2 6-2 8 0M58 57c2-2 6-2 8 0" stroke="#E8756A" stroke-width="1.5" stroke-linecap="round" opacity=".55"/>
+        <circle cx="36" cy="42" r="3" fill="#E8756A" opacity=".2"/>
+        <circle cx="64" cy="42" r="3" fill="#E8756A" opacity=".2"/>
+        <ellipse cx="50" cy="78" rx="20" ry="4" fill="#1C1C2E" opacity=".06"/>
+      </svg>
+    </div>
+    <div class="land-content">
+      <h1 class="land-title"><span>Évaluez votre</span><br><span>équilibre physiologique</span></h1>
+      <p class="land-desc">Ce scan analyse 5 axes<br>fondamentaux de votre santé.</p>
+      <p class="land-dur">Durée : 2 minutes.</p>
+      <button class="btn-cta" onclick="startQuiz()">Commencer l'évaluation</button>
+      <div class="land-brand">
+        <div class="blogo"><svg viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="4" stroke="#fff" stroke-width="1.5"/><path d="M5.5 3v5M3 5.5h5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        Prime Health Clinic
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="s-quiz" class="screen">
+    <div class="quiz-top">
+      <div class="axe-header">
+        <span class="axe-lbl" id="axe-lbl">Étape 1 / 5</span>
+        <span class="q-cnt" id="q-cnt">Q 1 / 30</span>
+      </div>
+      <div class="pbar"><div class="pfill" id="pfill" style="width:0%"></div></div>
+    </div>
+    <div class="quiz-card" id="quiz-card">
+      <div class="axe-icon-c" id="axe-icon-c"></div>
+      <div class="q-nm" id="q-nm"></div>
+      <div class="q-tx" id="q-tx"></div>
+      <div class="q-sb" id="q-sb"></div>
+      <div class="ans-list" id="ans-list"></div>
+    </div>
+    <div class="axe-sc-mini" id="axe-sc-mini">Score axe : 0 / 18</div>
+    <div class="quiz-nav">
+      <button class="btn-prev" id="btn-prev" onclick="goBack()" style="visibility:hidden">← Retour</button>
+      <button class="btn-nxt" id="btn-nxt" onclick="goNext()">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- ANALYSE -->
+  <div id="s-analyse" class="screen" style="background:#F0F2F7;align-items:center;justify-content:center;text-align:center;padding:28px 20px;gap:0">
+    <div class="spin"></div>
+    <div class="an-title">Analyse en cours...</div>
+    <div class="an-sb">Calcul de votre profil physiologique</div>
+    <div class="an-steps">
+      <div class="an-step" id="ast0"><div class="an-dot">✓</div>Inflammation / Digestif</div>
+      <div class="an-step" id="ast1"><div class="an-dot">✓</div>Stress neuro-endocrinien</div>
+      <div class="an-step" id="ast2"><div class="an-dot">✓</div>Axe métabolique</div>
+      <div class="an-step" id="ast3"><div class="an-dot">✓</div>Énergie & Fatigue</div>
+      <div class="an-step" id="ast4"><div class="an-dot">✓</div>Psycho-émotionnel</div>
+    </div>
+    <div class="land-brand" style="margin-top:24px">
+      <div class="blogo"><svg viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="4" stroke="#fff" stroke-width="1.5"/><path d="M5.5 3v5M3 5.5h5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      Prime Health Clinic
+    </div>
+  </div>
+
+  <!-- RESULTS SHELL -->
+  <div id="s-results" class="screen">
+    <div class="res-top">
+      <div class="res-logo-sm">
+        <div class="blogo"><svg viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="4" stroke="#fff" stroke-width="1.5"/><path d="M5.5 3v5M3 5.5h5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        Vos résultats
+      </div>
+      <button class="btn-redo" onclick="restart()">↺ Recommencer</button>
+    </div>
+    <div class="slides-viewport">
+      <div class="slides-track" id="slides-track">
+
+        <!-- SLIDE 1 -->
+        <div class="slide" id="slide-0">
+          <div class="rcard">
+            <div class="rcard-title">📋 Votre profil global</div>
+            <div id="profile-box"></div>
+          </div>
+          <div class="rcard">
+            <div class="rcard-title">📊 Vue d'ensemble</div>
+            <div class="radar-wrap"><canvas id="radarChart" width="200" height="200"></canvas></div>
+            <div class="total-row"><span class="total-lbl">Score global</span><span class="total-num" id="total-num">— / 90</span></div>
+          </div>
+          <div class="rcard">
+            <div class="rcard-title">🔍 Interprétation</div>
+            <p class="interp-txt" id="interp-txt"></p>
+          </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide" id="slide-1">
+          <div class="rcard">
+            <div class="rcard-title">📈 Analyse détaillée par axe</div>
+            <div id="score-detail"></div>
+            <div class="legend-row" style="margin-top:8px">
+              <div class="leg-item"><div class="leg-dot" style="background:#4CAF78"></div>Faible 0–6</div>
+              <div class="leg-item"><div class="leg-dot" style="background:#C07C1A"></div>Moyen 7–12</div>
+              <div class="leg-item"><div class="leg-dot" style="background:#C13030"></div>Élevé 13–18</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide" id="slide-2">
+          <div class="rcard">
+            <div class="rcard-title">✅ Recommandations</div>
+            <div id="rec-list"></div>
+          </div>
+          <div class="email-block">
+            <div class="email-lbl">✉️ Recevoir par email</div>
+            <div class="email-row" id="email-row">
+              <input class="email-in" type="email" id="email-in" placeholder="votre@email.com">
+              <button class="btn-send" onclick="sendEmail()">Envoyer</button>
+            </div>
+            <div class="email-ok" id="email-ok">✓ Bilan envoyé avec succès !</div>
+            <p class="email-note">Vos données restent confidentielles.</p>
+          </div>
+          <div style="height:9px"></div>
+          <button id="pdf-btn" onclick="downloadPDF()" style="width:100%;background:#1C1C2E;color:#fff;border:none;border-radius:50px;padding:13px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .15s" onmouseover="this.style.background='#2D2D4A'" onmouseout="this.style.background='#1C1C2E'">
+            <span>📄</span> Télécharger le bilan PDF
+          </button>
+        </div>
+
+      </div>
+    </div>
+    <div class="slide-nav">
+      <button class="btn-slide prev" id="btn-prev-slide" onclick="goSlide(-1)" disabled>← Précédent</button>
+      <div class="dots" id="slide-dots">
+        <div class="dot active" onclick="jumpSlide(0)"></div>
+        <div class="dot" onclick="jumpSlide(1)"></div>
+        <div class="dot" onclick="jumpSlide(2)"></div>
+      </div>
+      <button class="btn-slide next" id="btn-next-slide" onclick="goSlide(1)">Suivant →</button>
+    </div>
+  </div>
+
+</div><!-- /phone -->
+</div>
+
+<!-- ─── PDF CONTAINER (hors écran, hauteur auto) ─── -->
+<div id="pdf-container" style="
+  position:fixed;
+  left:-9999px;
+  top:0;
+  width:620px;
+  height:auto;
+  background:#ffffff;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#1C1C2E;
+  padding:40px 44px;
+  visibility:hidden;
+  z-index:-1;
+"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+const AXES=[
+  {name:"Inflammation / Digestif",short:"Digestif",color:"#E8680A",bg:"#FEF0E6",icon:"🫁",
+   sub:"Comment se manifeste votre digestion au quotidien ?",
+   qs:["Ressentez-vous des ballonnements après les repas ?","Votre transit est-il irrégulier (constipation / diarrhée) ?","Ressentez-vous des douleurs abdominales ?","Êtes-vous fatigué après les repas ?","Avez-vous un brouillard mental ?","Êtes-vous sensible à certains aliments ?"]},
+  {name:"Stress (Neuro-endocrinien)",short:"Stress",color:"#7B4FCF",bg:"#F2ECFC",icon:"🧠",
+   sub:"Comment avez-vous ressenti votre niveau de stress ces derniers temps ?",
+   qs:["Avez-vous du mal à vous détendre ?","Ressentez-vous un stress constant ?","Vous réveillez-vous la nuit ?","Êtes-vous fatigué au réveil ?","Êtes-vous facilement irritable ?","Avez-vous des difficultés de concentration ?"]},
+  {name:"Métabolique",short:"Métabolisme",color:"#1A8C6E",bg:"#E6F6F2",icon:"⚡",
+   sub:"Comment évaluez-vous votre appétit et votre énergie après les repas ?",
+   qs:["Avez-vous des fringales sucrées ?","Ressentez-vous un coup de fatigue après les repas ?","Avez-vous des difficultés à perdre du poids ?","Stockez-vous facilement au niveau abdominal ?","Votre énergie est-elle instable dans la journée ?","Ressentez-vous des sensations d'hypoglycémie ?"]},
+  {name:"Énergie / Fatigue",short:"Énergie",color:"#3A7DC9",bg:"#EBF3FB",icon:"🔋",
+   sub:"Comment vous sentez-vous par rapport à votre niveau de forme physique ?",
+   qs:["Ressentez-vous une fatigue persistante ?","Avez-vous des difficultés à récupérer ?","Manquez-vous de motivation physique ?","Vous épuisez-vous rapidement ?","Avez-vous besoin de stimulants (café / sucre) ?","Ressentez-vous une baisse d'énergie dans la journée ?"]},
+  {name:"Psycho-émotionnel",short:"Psycho",color:"#C0424A",bg:"#FCEAEA",icon:"💚",
+   sub:"Comment allez-vous psycho-émotionnellement ces derniers temps ?",
+   qs:["Ressentez-vous une perte de plaisir ?","Avez-vous une anxiété diffuse ?","Ressentez-vous une charge mentale élevée ?","Avez-vous des pensées envahissantes ?","Avez-vous une sensation de perte de contrôle ?","Votre humeur est-elle instable ?"]}
+];
+const ANS=["Jamais","Parfois","Souvent","Très souvent"];
+const PILL_SEL=["sel-0","sel-1","sel-2","sel-3"];
+let answers=new Array(30).fill(null),cur=0,gScores=[],curSlide=0;
+
+function aScore(i){let s=0;for(let j=i*6;j<i*6+6;j++)if(answers[j]!==null)s+=answers[j];return s;}
+function gCol(s){return s<=6?'#4CAF78':s<=12?'#C07C1A':'#C13030';}
+function gLvl(s){return s<=6?{l:'Faible',c:'lvl-faible'}:s<=12?{l:'Moyen',c:'lvl-moyen'}:{l:'Élevé',c:'lvl-eleve'};}
+
+function startQuiz(){show('s-quiz');render();}
+
+function render(){
+  const ai=Math.floor(cur/6),ax=AXES[ai];
+  document.getElementById('axe-lbl').textContent=`Étape ${ai+1} / 5`;
+  document.getElementById('axe-lbl').style.color=ax.color;
+  document.getElementById('q-cnt').textContent=`Q ${cur+1} / 30`;
+  const pf=document.getElementById('pfill');pf.style.width=Math.round(cur/30*100)+'%';pf.style.background=ax.color;
+  const ic=document.getElementById('axe-icon-c');ic.style.background=ax.bg;ic.style.fontSize='26px';ic.textContent=ax.icon;
+  const card=document.getElementById('quiz-card');card.style.animation='none';void card.offsetHeight;card.style.animation='';
+  document.getElementById('q-nm').textContent=ax.name;document.getElementById('q-nm').style.color=ax.color;
+  document.getElementById('q-tx').textContent=ax.qs[cur%6];
+  document.getElementById('q-sb').textContent=ax.sub;
+  const al=document.getElementById('ans-list');al.innerHTML='';
+  ANS.forEach((a,i)=>{
+    const b=document.createElement('button');
+    b.className='ans-pill'+(answers[cur]===i?' '+PILL_SEL[i]:'');
+    b.textContent=a;b.onclick=()=>{answers[cur]=i;render();};al.appendChild(b);
+  });
+  document.getElementById('axe-sc-mini').textContent=`Score axe ${ai+1} : ${aScore(ai)} / 18`;
+  document.getElementById('btn-prev').style.visibility=cur===0?'hidden':'visible';
+  const nn=document.getElementById('btn-nxt');
+  nn.className='btn-nxt'+(answers[cur]!==null?' ok':'');
+  nn.style.background=ax.color;nn.style.color='#fff';
+  nn.textContent=cur===29?'Voir mes résultats →':'Suivant →';
+}
+function goBack(){if(cur>0){cur--;render();}}
+function goNext(){if(answers[cur]===null)return;if(cur===29)showAnalyse();else{cur++;render();}}
+function show(id){
+  ['s-land','s-quiz','s-analyse','s-results'].forEach(s=>document.getElementById(s).classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function showAnalyse(){
+  show('s-analyse');
+  document.querySelectorAll('.an-step').forEach((s,i)=>setTimeout(()=>s.classList.add('done'),i*380));
+  setTimeout(buildResults,2300);
+}
+
+const PROFILES={
+  combined:{badge:'🔴 Profil Combiné',sub:'Déséquilibre systémique',cls:'combined',
+    desc:'Plusieurs systèmes sont impactés simultanément, indiquant un déséquilibre global du système.',
+    checks:['≥ 2 axes ≥ 7','Interaction entre systèmes','Déséquilibre global'],
+    zone:"Priorité d'intervention",zoneText:'Ciblage multi-systèmes nécessaire.',
+    interp:'<strong>Votre profil combiné</strong> indique un déséquilibre systémique. Plusieurs axes de votre santé sont modérément ou fortement impactés simultanément. Une attention est nécessaire pour rétablir un équilibre physiologique global.',
+    recs:[{i:'🥗',t:'Ajustement nutritionnel ciblé'},{i:'🏃',t:"Programme d'activité physique adapté"},{i:'🧘',t:'Gestion du stress et récupération'},{i:'💊',t:'Soutien micronutritionnel'}],
+    pc:{bg:'#FDEAEA',brd:'#F09595',zone:'#E24B4A',txt:'#791F1F'}},
+  isole:{badge:'🟡 Profil Isolé',sub:"Zone d'alerte",cls:'isole',
+    desc:"Un système spécifique commence à se déséquilibrer, indiquant une zone à surveiller de près.",
+    checks:['1 axe ≥ 7','Les autres ≤ 6','Système encore stable'],
+    zone:'Zone de prévention',zoneText:'Prévenir la progression du déséquilibre.',
+    interp:"<strong>Votre profil isolé</strong> indique une zone d'alerte. Un axe est plus impacté (≥ 7) tandis que les autres restent stables. Il est nécessaire d'agir pour éviter une progression vers un déséquilibre plus global.",
+    recs:[{i:'🧘',t:'Gestion du stress ciblée'},{i:'🥗',t:'Adaptations nutritionnelles spécifiques'},{i:'😴',t:'Optimisation du sommeil'},{i:'🌿',t:'Techniques de relaxation'}],
+    pc:{bg:'#FEF3E0',brd:'#FAC775',zone:'#BA7517',txt:'#633806'}},
+  homogene:{badge:'🟢 Profil Homogène',sub:'Zone stable',cls:'homogene',
+    desc:'Les 5 systèmes majeurs sont équilibrés, indiquant un bon état de santé global.',
+    checks:['Tous les axes ≤ 6','Système régulé','Équilibre global'],
+    zone:"Zone d'optimisation",zoneText:'Phase de maintien et d\'optimisation.',
+    interp:'<strong>Votre profil homogène</strong> indique un équilibre global satisfaisant. Les 5 systèmes fonctionnent de façon équilibrée. Continuez à entretenir vos bonnes habitudes.',
+    recs:[{i:'✅',t:'Maintien des habitudes positives'},{i:'🏃',t:"Programme d'activité physique adapté"},{i:'🧘',t:'Gestion du stress équilibrée'},{i:'💊',t:'Suivi micronutritionnel personnalisé'}],
+    pc:{bg:'#E8F4EF',brd:'#A8DFC0',zone:'#3D7D5A',txt:'#085041'}}
+};
+
+function buildResults(){
+  gScores=AXES.map((_,i)=>aScore(i));
+  const high=gScores.filter(s=>s>=7).length;
+  const type=high>=2?'combined':high===1?'isole':'homogene';
+  const p=PROFILES[type];
+
+  document.getElementById('profile-box').innerHTML=`
+    <div class="profile-box ${p.cls}">
+      <div class="pb-badge">${p.badge}</div>
+      <div class="pb-sub">${p.sub}</div>
+      <div class="pb-desc">${p.desc}</div>
+      <div class="pb-checks">${p.checks.map(c=>`<div class="pb-check"><div class="chk">✓</div>${c}</div>`).join('')}</div>
+      <div class="pb-zone">${p.zone} — ${p.zoneText}</div>
+    </div>`;
+  document.getElementById('total-num').textContent=gScores.reduce((a,b)=>a+b,0)+' / 90';
+  document.getElementById('interp-txt').innerHTML=p.interp;
+
+  document.getElementById('score-detail').innerHTML=AXES.map((a,i)=>{
+    const s=gScores[i],c=gCol(s),pct=Math.round(s/18*100),lvl=gLvl(s);
+    return `<div class="sdr"><span class="sdr-ic">${a.icon}</span>
+      <div class="sdr-info">
+        <div class="sdr-nm">${a.name}<span class="lvl-badge ${lvl.c}">${lvl.l}</span></div>
+        <div class="sdr-bar"><div class="sdr-fill" style="width:${pct}%;background:${c}"></div></div>
+        <div class="sdr-meta">${s} points sur 18</div>
+      </div>
+      <div class="sdr-sc" style="color:${c}">${s}/18</div></div>`;
+  }).join('');
+
+  document.getElementById('rec-list').innerHTML=p.recs.map(r=>`
+    <div class="rec-item"><div class="rec-ic">${r.i}</div>${r.t}</div>`).join('');
+
+  drawRadar(gScores);
+  curSlide=0;updateSlideNav();
+  show('s-results');
+}
+
+function drawRadar(scores){
+  const canvas=document.getElementById('radarChart');
+  if(!canvas)return;
+  const sz=200,cx=100,cy=100,r=76,n=5;
+  const labels=['Inflam.','Stress','Métabo.','Énergie','Psycho'];
+  const ang=Array.from({length:n},(_,i)=>Math.PI*2/n*i-Math.PI/2);
+  const c=canvas.getContext('2d');c.clearRect(0,0,sz,sz);
+  [.25,.5,.75,1].forEach(t=>{
+    c.beginPath();ang.forEach((a,i)=>{const x=cx+Math.cos(a)*r*t,y=cy+Math.sin(a)*r*t;i?c.lineTo(x,y):c.moveTo(x,y);});
+    c.closePath();c.strokeStyle='#E8EAF0';c.lineWidth=1;c.stroke();
+  });
+  ang.forEach(a=>{c.beginPath();c.moveTo(cx,cy);c.lineTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r);c.strokeStyle='#E8EAF0';c.lineWidth=1;c.stroke();});
+  c.beginPath();
+  scores.forEach((s,i)=>{const t=s/18,x=cx+Math.cos(ang[i])*r*t,y=cy+Math.sin(ang[i])*r*t;i?c.lineTo(x,y):c.moveTo(x,y);});
+  c.closePath();c.fillStyle='rgba(61,125,90,.15)';c.fill();c.strokeStyle='#3D7D5A';c.lineWidth=2.5;c.stroke();
+  scores.forEach((s,i)=>{const t=s/18,x=cx+Math.cos(ang[i])*r*t,y=cy+Math.sin(ang[i])*r*t;c.beginPath();c.arc(x,y,3.5,0,Math.PI*2);c.fillStyle=gCol(s);c.fill();});
+  c.font='10px Arial,sans-serif';c.fillStyle='#8A8FA8';c.textAlign='center';
+  ang.forEach((a,i)=>{const x=cx+Math.cos(a)*(r+13),y=cy+Math.sin(a)*(r+13)+3;c.fillText(labels[i],x,y);});
+}
+
+function goSlide(dir){jumpSlide(curSlide+dir);}
+function jumpSlide(idx){
+  if(idx<0||idx>2)return;
+  curSlide=idx;
+  document.getElementById('slides-track').style.transform=`translateX(-${idx*100}%)`;
+  updateSlideNav();
+}
+function updateSlideNav(){
+  document.getElementById('btn-prev-slide').disabled=curSlide===0;
+  const nb=document.getElementById('btn-next-slide');
+  nb.disabled=curSlide===2;
+  nb.textContent=curSlide===2?'Terminé ✓':'Suivant →';
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===curSlide));
+}
+function sendEmail(){
+  const inp=document.getElementById('email-in');
+  if(!inp.value||!inp.value.includes('@')){inp.style.borderColor='#E24B4A';setTimeout(()=>inp.style.borderColor='',1500);return;}
+  document.getElementById('email-row').style.display='none';
+  document.getElementById('email-ok').style.display='block';
+}
+
+/* ─────────────────────────────────────────
+   PDF GENERATION — CONTENEUR DÉDIÉ + HAUTEUR AUTO
+───────────────────────────────────────── */
+async function downloadPDF(){
+  if(!gScores.length)return;
+
+  const overlay=document.getElementById('pdf-overlay');
+  const msg=document.getElementById('pdf-msg');
+  overlay.classList.add('active');
+  msg.textContent='Préparation du contenu...';
+
+  const high=gScores.filter(s=>s>=7).length;
+  const type=high>=2?'combined':high===1?'isole':'homogene';
+  const p=PROFILES[type];
+  const total=gScores.reduce((a,b)=>a+b,0);
+  const date=new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});
+
+  // Build self-contained HTML with inline styles only (no classes)
+  const profileBg={combined:'#FDEAEA',isole:'#FEF3E0',homogene:'#E8F4EF'}[type];
+  const profileBrd={combined:'#F09595',isole:'#FAC775',homogene:'#A8DFC0'}[type];
+  const profileZone={combined:'#E24B4A',isole:'#BA7517',homogene:'#3D7D5A'}[type];
+  const profileTxt={combined:'#791F1F',isole:'#633806',homogene:'#085041'}[type];
+
+  const scoresRows=AXES.map((a,i)=>{
+    const s=gScores[i];const c=gCol(s);const pct=Math.round(s/18*100);
+    return `<tr>
+      <td style="padding:5px 0;font-size:13px;font-weight:600;color:#1C1C2E;width:160px">${a.name}</td>
+      <td style="padding:5px 8px"><div style="background:#E8EAF0;border-radius:4px;height:8px;overflow:hidden"><div style="background:${c};width:${pct}%;height:100%;border-radius:4px"></div></div></td>
+      <td style="padding:5px 0;font-size:13px;font-weight:800;color:${c};text-align:right;width:45px">${s}/18</td>
+    </tr>`;
+  }).join('');
+
+  const recsRows=p.recs.map(r=>`
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #F0F2F7">
+      <div style="width:28px;height:28px;background:#E8F4EF;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0">${r.i}</div>
+      <span style="font-size:13px;color:#4A4A6A">${r.t}</span>
+    </div>`).join('');
+
+  const html=`
+  <div id="pdf-content" style="width:532px;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#1C1C2E">
+
+    <!-- HEADER -->
+    <div style="border-bottom:2px solid #3D7D5A;padding-bottom:14px;margin-bottom:22px;display:flex;justify-content:space-between;align-items:flex-end">
+      <div>
+        <div style="font-size:24px;font-weight:900;margin-bottom:3px">🧠 Votre Bilan de Santé</div>
+        <div style="font-size:13px;color:#8A8FA8;font-style:italic">Rapport personnalisé — ${date}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:13px;font-weight:800;color:#3D7D5A">Prime Health Clinic</div>
+        <div style="font-size:11px;color:#8A8FA8">Approche systémique & bioénergétique</div>
+      </div>
+    </div>
+
+    <!-- INTRO + SCORES côte à côte -->
+    <div style="display:flex;gap:16px;margin-bottom:18px">
+      <div style="flex:1;background:#F8F9FC;border-radius:10px;padding:14px">
+        <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#8A8FA8;margin-bottom:8px">Introduction</div>
+        <div style="font-size:12.5px;color:#4A4A6A;line-height:1.65;margin-bottom:8px">Ce rapport évalue votre état de santé global à partir de <b>5 axes fondamentaux</b> :</div>
+        ${AXES.map(a=>`<div style="font-size:12px;color:#4A4A6A;margin-bottom:4px;display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:${a.color};flex-shrink:0"></span>${a.name}</div>`).join('')}
+      </div>
+      <div style="flex:1;background:#F8F9FC;border-radius:10px;padding:14px">
+        <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#8A8FA8;margin-bottom:8px">Scores par axe</div>
+        ${AXES.map((a,i)=>{const s=gScores[i];const c=gCol(s);return `<div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:12.5px;font-weight:600"><span>${a.name.split('/')[0].trim()}</span><span style="color:${c};font-weight:800">${s}/18</span></div>`;}).join('')}
+        <div style="border-top:1.5px solid #E8EAF0;margin-top:8px;padding-top:8px;display:flex;justify-content:space-between">
+          <span style="font-size:12.5px;font-weight:800;color:#3D7D5A">Score global</span>
+          <span style="font-size:13px;font-weight:900;color:#3D7D5A">${total}/90</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFIL -->
+    <div style="background:${profileBg};border:1.5px solid ${profileBrd};border-radius:12px;padding:16px;margin-bottom:18px">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#8A8FA8;margin-bottom:10px">Votre profil physiologique</div>
+      <div style="font-size:18px;font-weight:900;color:${profileTxt};margin-bottom:3px">${p.badge}</div>
+      <div style="font-size:12px;color:${profileTxt};opacity:.75;font-weight:600;margin-bottom:10px">${p.sub}</div>
+      <div style="font-size:12.5px;color:${profileTxt};line-height:1.7;margin-bottom:12px">${p.desc}</div>
+      ${p.checks.map(c=>`<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:12.5px;font-weight:700;color:${profileTxt}"><span style="width:16px;height:16px;border-radius:50%;background:${profileTxt};color:#fff;font-size:9px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">✓</span>${c}</div>`).join('')}
+      <div style="background:${profileZone};color:#fff;border-radius:8px;padding:9px 12px;font-size:12px;font-weight:700;margin-top:10px">${p.zone} — ${p.zoneText}</div>
+    </div>
+
+    <!-- SCORES BARRES -->
+    <div style="background:#F8F9FC;border-radius:10px;padding:16px;margin-bottom:18px">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#8A8FA8;margin-bottom:12px">Analyse détaillée par axe</div>
+      <table style="width:100%;border-collapse:collapse">${scoresRows}</table>
+      <div style="display:flex;gap:16px;margin-top:10px">
+        <span style="font-size:11px;color:#8A8FA8;font-weight:600;display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4CAF78"></span>Faible (0–6)</span>
+        <span style="font-size:11px;color:#8A8FA8;font-weight:600;display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#C07C1A"></span>Moyen (7–12)</span>
+        <span style="font-size:11px;color:#8A8FA8;font-weight:600;display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#C13030"></span>Élevé (13–18)</span>
+      </div>
+    </div>
+
+    <!-- INTERPRETATION -->
+    <div style="background:#F8F9FC;border-radius:10px;padding:16px;margin-bottom:18px">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#8A8FA8;margin-bottom:8px">Interprétation globale</div>
+      <div style="font-size:13px;color:#4A4A6A;line-height:1.75">${p.interp.replace(/<strong>/g,'<b>').replace(/<\/strong>/g,'</b>')}</div>
+    </div>
+
+    <!-- RECOMMANDATIONS -->
+    <div style="background:#F8F9FC;border-radius:10px;padding:16px;margin-bottom:22px">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#8A8FA8;margin-bottom:10px">Recommandations</div>
+      ${recsRows}
+    </div>
+
+    <!-- FOOTER -->
+    <div style="text-align:center;padding:14px 0 0;border-top:1px solid #E8EAF0">
+      <div style="font-size:14px;font-weight:800;color:#3D7D5A;margin-bottom:2px">Prime Health Clinic</div>
+      <div style="font-size:11px;color:#8A8FA8;font-style:italic">Approche systémique &amp; bioénergétique de la santé</div>
+    </div>
+
+  </div>`;
+
+  // ─── Inject into dedicated off-screen container ───
+  const container=document.getElementById('pdf-container');
+  container.innerHTML=html;
+  container.style.visibility='visible';
+  container.style.height='auto';        // hauteur auto — pas de coupure
+  container.style.overflow='visible';
+
+  // Wait for render
+  msg.textContent='Rendu en cours... (wait 500ms)';
+  await new Promise(r=>setTimeout(r,500));
+
+  msg.textContent='Génération du PDF...';
+
+  const target=container.querySelector('#pdf-content');
+
+  try {
+    await html2pdf()
+      .set({
+        margin:[12,10,12,10],
+        filename:'Bilan_Sante_Prime_Health.pdf',
+        image:{type:'jpeg',quality:0.97},
+        html2canvas:{
+          scale:2,
+          useCORS:true,
+          logging:true,
+          backgroundColor:'#ffffff',
+          allowTaint:false,
+          foreignObjectRendering:false
+        },
+        jsPDF:{
+          unit:'mm',
+          format:'a4',
+          orientation:'portrait',
+          compress:true
+        },
+        pagebreak:{mode:['avoid-all','css','legacy']}
+      })
+      .from(target)
+      .save();
+
+    msg.textContent='✓ PDF téléchargé !';
+    setTimeout(()=>{
+      overlay.classList.remove('active');
+      container.style.visibility='hidden';
+      container.innerHTML='';
+    },1200);
+
+  } catch(err){
+    console.error('PDF error:',err);
+    msg.textContent='Erreur. Réessayez.';
+    setTimeout(()=>{overlay.classList.remove('active');container.style.visibility='hidden';},2000);
+  }
+}
+
+function restart(){
+  answers=new Array(30).fill(null);cur=0;gScores=[];curSlide=0;
+  document.getElementById('email-row').style.display='';
+  document.getElementById('email-ok').style.display='none';
+  document.getElementById('email-in').value='';
+  document.querySelectorAll('.an-step').forEach(s=>s.classList.remove('done'));
+  show('s-land');
+}
+</script>
